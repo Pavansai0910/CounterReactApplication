@@ -1,0 +1,94 @@
+body {
+  background-color: #f4f4f4;
+  font-family: Arial, sans-serif;
+}
+
+.container {
+  text-align: center;
+  padding-top: 50px;
+}
+
+.counter-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.number {
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.button-box {
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 20px; /* space between Add and Sort buttons */
+}
+
+.btn {
+  padding: 8px 15px;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.red { background-color: #e74c3c; }
+.green { background-color: #27ae60; }
+.blue { background-color: #3498db; }
+.purple { background-color: #8e44ad; }
+
+.btn:hover {
+  opacity: 0.85;
+}
+
+.list-box {
+  background: white;
+  padding: 15px;
+  margin: auto;
+  width: fit-content;
+  border-radius: 5px;
+  box-shadow: 0 0 5px rgba(0,0,0,0.1);
+}
+
+.sort-comment {
+  font-size: 14px;
+  font-style: italic;
+  margin-bottom: 10px;
+}
+
+.sort-comment.asc {
+  color: #27ae60; /* green for ascending */
+}
+
+.sort-comment.desc {
+  color: #e74c3c; /* red for descending */
+}
+
+.list-box ul {
+  display: flex; /* horizontal layout */
+  justify-content: center;
+  gap: 10px; /* space between numbers */
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.list-box li {
+  background: #f8f8f8;
+  padding: 8px 12px;
+  border-radius: 4px;
+  font-weight: bold;
+}
+
+.deleteItem{
+    height: 2px;
+    /* vertical-align: text-top; */
+    margin-top: 1px;
+    color: red;
+    border: none;
+}
