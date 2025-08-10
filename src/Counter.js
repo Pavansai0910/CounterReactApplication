@@ -4,7 +4,8 @@ import "./Counter.css";
 function Counter() {
   const [number, setNumber] = useState(0);
   const [records, setRecords] = useState([]);
-  const [isAsc, setIsAsc] = useState(true);
+  const [isSorted , setIsSorted] = useState(false);
+  const [isAsc, setIsAsc] = useState(false);
   const [hasAdded, setHasAdded] = useState(false);
 
   function increase() {
@@ -31,6 +32,9 @@ function Counter() {
       copiedList.sort((a, b) => b - a);
     } else {
       copiedList.sort((a, b) => a - b);
+    }
+    if(!isSorted){
+        setIsSorted(true);
     }
     setIsAsc(!isAsc);
     setRecords(copiedList);
@@ -66,7 +70,7 @@ function Counter() {
         {hasAdded && (
           <>
             <button onClick={sortList} className="btn purple">
-              Sort ({isAsc ? "Asc" : "Desc"})
+              Sort ({!isAsc ? "Asc" : "Desc"})
             </button>
             <button onClick={resetList} className="btn red">
               Reset
@@ -76,7 +80,7 @@ function Counter() {
       </div>
 
       <div className="list-box">
-        {records.length > 0 && (
+        {isSorted &&  records.length > 0 && (
           <div className={`sort-comment ${isAsc ? "asc" : "desc"}`}>
             Sorted in {isAsc ? "Ascending" : "Descending"} Order
           </div>
