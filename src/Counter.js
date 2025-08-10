@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./Counter.css";
 
-function Counter() {
+function Counter( {setCounterOpen}) {
   const [number, setNumber] = useState(0);
   const [records, setRecords] = useState([]);
   const [isSorted , setIsSorted] = useState(false);
@@ -57,6 +57,7 @@ function Counter() {
 
   return (
     <div className="container">
+      <button onClick={() => setCounterOpen(false)}>Take me back to Home</button>
       <h1>Simple Counter</h1>
 
       <div className="counter-box">
