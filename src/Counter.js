@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import "./Counter.css";
 
-function Counter( {setCounterOpen}) {
+function Counter({ setCounterOpen }) {
   const [number, setNumber] = useState(0);
   const [records, setRecords] = useState([]);
-  const [isSorted , setIsSorted] = useState(false);
+  const [isSorted, setIsSorted] = useState(false);
   const [isAsc, setIsAsc] = useState(false);
   const [hasAdded, setHasAdded] = useState(false);
 
@@ -33,8 +33,8 @@ function Counter( {setCounterOpen}) {
     } else {
       copiedList.sort((a, b) => a - b);
     }
-    if(!isSorted){
-        setIsSorted(true);
+    if (!isSorted) {
+      setIsSorted(true);
     }
     setIsAsc(!isAsc);
     setRecords(copiedList);
@@ -45,6 +45,7 @@ function Counter( {setCounterOpen}) {
     setRecords(updatedList);
     if (updatedList.length === 0) {
       setHasAdded(false);
+      setIsSorted(false);
     }
   }
 
@@ -53,34 +54,69 @@ function Counter( {setCounterOpen}) {
     setRecords([]);
     setHasAdded(false);
     setIsAsc(true);
+    setIsSorted(false);
   }
 
   return (
     <div className="container">
-      <button onClick={() => setCounterOpen(false)}>Take me back to Home</button>
+      <button onClick={() => setCounterOpen(false)} className="back-home">
+        Take me back to Home
+      </button>
+
       <h1>Simple Counter</h1>
 
-      <div className="counter-box">
-        <button onClick={decrease} className="btn red">-</button>
-        <p className="number">{number}</p>
-        <button onClick={increase} className="btn green">+</button>
+      <div className="counter-controls">
+        <button onClick={decrease} className="decrease-button">
+          -
+        </button>
+        <p className="number-display">{number}</p>
+        <button onClick={increase} className="increase-button">
+          +
+        </button>
       </div>
 
-      <div className="button-box">
-        <button onClick={addValue} className="btn blue">Add</button>
+      <div className="action-buttons">
+        {number !=0 &&
+        <button  onClick={addValue} className="add-button">
+          Add
+        </button>
+}
         {hasAdded && (
           <>
-            <button onClick={sortList} className="btn purple">
+            <button onClick={sortList} className="sort-button">
               Sort ({!isAsc ? "Asc" : "Desc"})
             </button>
-            <button onClick={resetList} className="btn red">
+            <button onClick={resetList} className="reset-button">
               Reset
             </button>
           </>
         )}
       </div>
+       
 
-      <div className="list-box">
+      {/* <div className="list-box">
+        {isSorted && records.length > 0 && (
+          <div className={`sort-comment ${isAsc ? "asc" : "desc"}`}>
+            Sorted in {isAsc ? "Ascending" : "Descending"} Order
+          </div>
+        )}
+
+        <ul className="horizontal-list">
+          {records.map((val, index) => (
+            <div className="list-item-container" key={index}>
+              <li className="list-item">{val}</li>
+              <button
+                onClick={() => deleteValue(index)}
+                className="delete-button"
+                aria-label={`Delete item ${val}`}
+              >
+                x
+              </button>
+            </div>
+          ))}
+        </ul>
+      </div> */}
+{hasAdded && (<div className="list-box">
         {isSorted &&  records.length > 0 && (
           <div className={`sort-comment ${isAsc ? "asc" : "desc"}`}>
             Sorted in {isAsc ? "Ascending" : "Descending"} Order
@@ -88,12 +124,12 @@ function Counter( {setCounterOpen}) {
         )}
         <ul className="horizontal-list">
           {records.map((val, index) => (
-            <div className="listItems">
+            <div className="list-item-container" key={index}>
                 <li key={index} className="list-item">
               {val}
             </li>
             <button
-                onClick={() => deleteValue(index)}
+onClick={() => deleteValue(index)}
                 className="deleteItem"
               >
                 x
@@ -101,7 +137,9 @@ function Counter( {setCounterOpen}) {
             </div>
           ))}
         </ul>
-      </div>
+      </div>)}
+     
+
     </div>
   );
 }
